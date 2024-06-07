@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Webgis 2: Bing Basemap Layer</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device=width, initial-scarlet-1.0"/>
+
+        <link rel="stylesheet" href="DATA KULIAH/KEMAH KERJA 2024/SUKOLILO/WEBGIS"/>
+        <link rel="stylesheet" href="css/mymap.css"/>
+
+        <script src="libs/leaflet/leaflet.js"></script>
+        <script src="DATA KULIAH/KEMAH KERJA 2024/SUKOLILO/WEBGIS"></script>
+        <script src="js/my_bing_key.js"></script>
+
+        </head>
+        <body>
+            <div id="mapdiv"></div>
+            <script>
+                var mymap = L.map("mapdiv").setView([-7.281355623439754, 112.79526862275651] , 14);
+
+                var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: ['a','b','c']
+                }
+                );
+
+                osm.addTo(mymap);
+
+                var bingAerial = L.tileLayer.bing({
+                    bingMapsKey: myBingKey,
+                    attribution: '&copy; <a href="https://bing.com">Bing Maps</a>',
+                    ImagerySet: 'Aerial'
+                });
+
+                //var bingAerialWithLabel = L.tileLayer.bing({
+                //    bingMapsKey: myBingKey,
+                //    attribution: '&copy; <a href="https://bing.com">Bing Maps</a>',
+                //    ImagerySet: 'AerialWithLabelOnDemand'
+                //});
+
+                //var bingRoad = L.tileLayer.bing({
+                //    bingMapsKey: myBingKey,
+                //    attribution: '&copy; <a href="https://bing.com">Bing Maps</a>',
+                //    ImagerySet: 'Road'
+                //});
+
+                var basemap = {
+                    "OpenStreetMap": osm,
+                    "Bing Aerial": bingAerial,
+                //    "Bing Road": bingRoad,
+                //    "Bing Aerial with Label": bingAerialWithLabel,
+                };
+
+              //  var overlaymap = {}
+
+                L.control.layers(basemap).addTo(mymap);
+
+                
+            </script>          
+        </body>
+    </html>

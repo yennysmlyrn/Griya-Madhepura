@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data - Persebaran RTLH di Kelurahan Semolowaru</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="judul"><a href="index.html">Rumah Layak</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="data.html">Data</a></li>
+                    <!-- <li><a href="index.html#partners">Partners</a></li> -->
+                    <li><a href="index.html#kontak">Kontak</a></li>
+                    <li><a href="index.html#tentang kami">Tentang Kami</a></li>
+                    <li><a href="login.html" class="tbl-biru">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="wrapper">
+        <section id="data">
+            <div class="kolom">
+                <h2><center>DATA</center></h2>
+                <p class="deskripsi">Data dan Informasi tentang Persebaran RTLH di Kelurahan Semolowaru</p>
+                <p>Produk kami mencakup data tabular yang lengkap mengenai rumah tidak layak huni (RTLH) di Kelurahan Semolowaru. Data ini meliputi informasi mengenai kondisi rumah, pemilik, dan lokasi spesifik. Informasi ini dikumpulkan dan diverifikasi untuk memastikan keakuratannya.</p>
+                <p>Berikut beberapa fitur utama dari produk kami:</p>
+                <p><input type="checkbox" id="data-tabular" name="data-tabular">
+                    <label for="data-tabular"><strong>Data Tabular:</strong> Menyajikan data dalam bentuk tabel yang mudah dipahami dan digunakan.</label>
+                <p><input type="checkbox" id="data-visualisasi-peta" name="data-visualisasi-peta">
+                    <label for="data-visualisasi-peta"><strong>Visualisasi Peta:</strong> Memetakan persebaran RTLH secara geografis untuk analisis visual yang lebih baik.</label>
+                <p><input type="checkbox" id="data-laporan-terperinci" name="data-laporan-terperinci">
+                    <label for="data-laporan-terperinci"><strong>Laporan Terperinci:</strong> Laporan lengkap yang merinci setiap aspek dari RTLH, termasuk kondisi fisik dan aspek sosial.</label>
+                <!--<p><a href="more-details.html" class="tbl-biru">Pelajari Lebih Lanjut</a></p>-->
+            </div>
+        </section>
+    </div>
+
+    <!-- Konten untuk Data Tabular -->
+    <div id="tabular-content" class="hidden-content">
+        <h3><center>Data Tabular</center></h3>
+        <p><input type="file" id="file-input" /></p>
+        <table id="data-table">
+            <!-- Tabel akan diisi dengan data dari Excel -->
+        </table>
+    </div>
+
+    <!-- untuk Visualisasi Peta -->
+    <section id="visualisasi-peta-content" class="hidden-content">
+        <div class="kolom">
+            <h2><center>Visualisasi Peta</center></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed deserunt voluptatibus possimus blanditiis reiciendis. Qui, facilis! Delectus exercitationem dolores sapiente?</p>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+    <script src="leaflet-bing-layer.js"></script>
+    <style>
+        body {
+            margin: 10px 0px 10px 0px;
+            padding: 10px 0px 10px 0px;
+        }
+        #map {
+            height: 400px;
+            width: 85%;
+            margin: 0px 100px 0px 100px 
+        }
+        .hidden-content {
+            display: none;
+        }
+    </style>
+
+    <script>
+        // Sembunyikan semua konten saat halaman pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', function(){
+            document.getElementById('tabular-content').style.display = 'none';
+            document.getElementById('visualisasi-peta-content').style.display = 'none';
+        });
+
+        // Event listener untuk checkbox
+        document.getElementById('data-tabular').addEventListener('change', function() {
+            var tabularContent = document.getElementById('tabular-content');
+            tabularContent.style.display = this.checked ? 'block' : 'none';
+        });
+
+        document.getElementById('data-visualisasi-peta').addEventListener('change', function() {
+            var petaContent = document.getElementById('visualisasi-peta-content');
+            petaContent.style.display = this.checked ? 'block' : 'none';
+            if (this.checked) {
+                initializeMap();
+            }
+        });
+
+        // Initialize map
+        function initializeMap() {
+            var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L';
+            var map = L.map('map').setView([-7.300214, 112.779643], 13);
+            var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map);
+
+            // Contoh data rumah tidak layak huni
+            var rumah_tidak_layak_huni = [
+                {"lokasi": [-7.2996436, 112.7803164], "keterangan": "Rumah tidak layak huni 1", "kependudukan": "Jumlah Anggota Keluarga: 5", "gambar": "Rumah1.jpg"},
+            ];
+            
+            // Tambahkan marker untuk setiap rumah tidak layak huni
+            for (var i = 0; i < rumah_tidak_layak_huni.length; i++) {
+                var rumah = rumah_tidak_layak_huni[i];
+                var popupContent = `<b>${rumah.keterangan}</b><br>${rumah.kependudukan}<br><img src="${rumah.gambar}" width="100">`;
+                L.marker(rumah.lokasi).addTo(map).bindPopup(popupContent);
+            }
+
+            // Tambahkan layer batas wilayah dari file GeoJSON
+            var boundaryLayer = L.geoJSON().addTo(map);
+            fetch('Semolowaru.geojson') // Ganti 'Semolowaru.geojson' dengan nama file GeoJSON Anda
+                .then(response => response.json())
+                .then(data => {
+                    boundaryLayer.addData(data);
+                });
+
+            // Aktifkan plugin Leaflet-geoman untuk menggambar poligon
+            if (map.pm) {
+                map.pm.addControls({
+                    position: 'topleft',
+                    drawCircle: false,
+                    drawCircleMarker: false,
+                    drawRectangle: false,
+                    drawMarker: false,
+                    rotateMode: false,
+                    dragMode: false,
+                    cutPolygon: false,
+                    removalMode: false
+                });
+            }
+        }
+
+        // Fungsi untuk membaca file Excel dan menampilkan datanya
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var data = new Uint8Array(event.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+
+                // Ambil data dari sheet pertama
+                var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                var excelRows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+                // Tampilkan data dalam tabel
+                var table = document.getElementById('data-table');
+                table.innerHTML = '';
+                for (var i = 0; i < excelRows.length; i++) {
+                    var row = document.createElement('tr');
+                    for (var j = 0; j < excelRows[i].length; j++) {
+                        var cell = document.createElement(i === 0 ? 'th' : 'td');
+                        cell.textContent = excelRows[i][j];
+                        row.appendChild(cell);
+                    }
+                    table.appendChild(row);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        });
+    </script>
+</body>
+</html>

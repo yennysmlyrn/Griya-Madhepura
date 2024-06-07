@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persebaran Rumah Tidak Layak Huni (RTLH) di Kelurahan Semolowaru</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2 id="form-title">Login</h2>
+
+        <!-- Form Login -->
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-username">Nama Pengguna:</label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Kata Sandi:</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit" class="btn-submit">Login</button>
+        </form>
+
+        <!-- Form Register (Tersembunyi) -->
+        <form id="register-form" class="hidden">
+            <div class="form-group">
+                <label for="register-username">Nama Pengguna:</label>
+                <input type="text" id="register-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Kata Sandi:</label>
+                <input type="password" id="register-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Konfirmasi Kata Sandi:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="btn-submit">Daftar</button>
+        </form>
+
+        <span id="toggle-link" class="toggle-form">Belum punya akun? Daftar di sini.</span>
+        <p id="message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

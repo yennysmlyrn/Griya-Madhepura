@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="DATA KULIAH/KEMAH KERJA 2024/SUKOLILO/WEBGIS/mymap.css"/>
+        <link rel="stylesheet" href="css/mymap.css"/>
+
+        <script src="DATA KULIAH/KEMAH KERJA 2024/SUKOLILO/WEBGIS/my_bing_key.js"></script>
+        </head>
+        <body>
+            <div id="mapdiv"></div>
+            <script>
+                var mymap = L.map("mapdiv").setView([-7.2458, 112.7378] , 14);
+
+                var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: ['a','b','c']
+                }
+                );
+
+
+                osm.addTo(mymap);
+            </script>          
+        </body>
+    </html>

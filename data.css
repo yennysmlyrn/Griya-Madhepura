@@ -1,0 +1,154 @@
+* {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+}
+
+nav {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #364f6b;
+}
+
+nav .menu ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+nav .menu ul li {
+    margin-left: 20px;
+}
+
+nav .menu ul li a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav .menu ul li a:hover {
+    color: #fc5185;
+}
+
+section {
+    margin: 50px 0;
+}
+
+.kolom {
+    text-align: center;
+}
+
+.kolom h2 {
+    font-size: 36px;
+    color: #364f6b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.kolom p.deskripsi {
+    font-size: 20px;
+    color: #364f6b;
+    margin-bottom: 20px;
+}
+
+.kolom ul {
+    list-style: none;
+    padding: 0;
+}
+
+.kolom ul li {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+a.tbl-biru {
+    display: inline-block;
+    background: #3f72af;
+    border-radius: 20px;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.tbl-biru:hover {
+    background: #fc5185;
+}
+
+.kolom h3 {
+    font-size: 36px;
+    color: #364f6b;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.hidden-content table{
+    font-size: 36px;
+    color: #364f6b;
+    margin-bottom: 50px;
+    margin: center;
+}
+
+footer {
+    background: #dedede;
+    padding: 50px 0;
+    text-align: center;
+}
+
+footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    width: 23%;
+    margin: 20px 0;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    color: #364f6b;
+    margin-bottom: 20px;
+}
+
+.footer-section p {
+    font-size: 16px;
+    color: #333;
+}
+
+.kolom h4 {
+    font-size: 36px;
+    color: #364f6b;
+    margin-bottom: 50px;
+    text-align: center;
+}
